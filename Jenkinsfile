@@ -13,7 +13,9 @@ pipeline {
                      def logFilePath = "${WORKSPACE}/output1.txt"
 
                     // Define the combined command with PowerShell redirection for each command
-                    def combinedCommand = """test.py"""
+                    def combinedCommand = """test.py
+                    
+                    """
                     combinedCommand = combinedCommand + "extraStep.py > ${logFilePath} 2>&1 " 
 
                     sh(script: combinedCommand)
