@@ -12,12 +12,12 @@ pipeline {
                     echo "List of files: \n${filesList}"
 
                     // Adjust the PATH environment variable
-                    withEnv(["PATH=/path/to/your/python/bin:${env.PATH}"]) {
+                    withEnv(["PATH=C:/Program Files/Python310/python.exe:${env.PATH}"]) {
                         // Now, the 'python' executable should be found in the modified PATH
                         sh(script: 'python --version')
 
                         // Specify the full path to the 'test.py' script
-                        sh(script: 'python /path/to/test.py')
+                        // sh(script: 'python /path/to/test.py')
                     }
                 }
             }
