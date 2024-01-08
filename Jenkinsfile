@@ -1,27 +1,5 @@
 
 
-    // def returnValue1 = sh(script: 'python test.py', returnStatus: true, returnStdout: true)
-    // if(returnValue1 != 0){
-    //   echo "Return Value: ${returnValue1}"
-    //   return returnValue1
-    // }
-    // else{
-    //   def returnValue2 = sh(script: 'python extraStep.py', returnStatus: true, returnStdout: true)
-    // }
-
-    // Print the return value
-   // echo "Return Value: ${returnValue}"
-
-    // Return the value
-  }
-  catch (e)
-    {
-        // println("Failed in running DSAU", e)
-        error("Exceptions with ${e}")
-        return e
-    }
-}
-
 def containsSubstringWithoutBOM(content, substring) {
     return content.replaceAll("\\uFEFF", "").contains(substring)
 }
