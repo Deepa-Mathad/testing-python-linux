@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     stages {
-
         stage('hello') {
             steps {
                 script {
@@ -12,10 +11,14 @@ pipeline {
                     def filesList = sh(script: 'ls -l', returnStdout: true).trim()
                     echo "List of files: \n${filesList}"
 
-                    // Run the combined command
-                    sh(script: 'python --version')
+                    // Adjust the PATH environment variable
+                    withEnv(["PATH=/path/to/your/python/bin:${env.PATH}"]) {
+                        // Now, the 'python' executable should be found in the modified PATH
+                        sh(script: 'python --version')
 
-                    sh(script: 'python test.py')
+                        // Specify the full path to the 'test.py' script
+                        sh(script: 'python /path/to/test.py')
+                    }
                 }
             }
         }
@@ -34,6 +37,7 @@ pipeline {
         }
     }
 }
+
 
 // pipeline {
 //     agent any
