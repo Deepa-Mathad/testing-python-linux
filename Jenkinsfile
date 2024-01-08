@@ -17,7 +17,7 @@ pipeline {
                     
                     """
                     combinedCommand = combinedCommand + "extraStep.py > ${logFilePath} 2>&1 " 
-                    echo command
+                    echo combinedCommand
                     def filesList = sh(script: 'ls -l', returnStdout: true).trim()
                     echo "List of files: \n${filesList}"
                     sh(script: combinedCommand)
