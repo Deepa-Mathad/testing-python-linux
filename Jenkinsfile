@@ -21,7 +21,7 @@ pipeline {
         //             }
         //         }
         //     }
-        }
+       // }
 
         stage('Upload database to artifactory') {
             steps {
