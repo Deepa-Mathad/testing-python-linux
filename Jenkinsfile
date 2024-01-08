@@ -12,9 +12,9 @@ def dsau() {
     // Execute the command and capture the return value
     try{
       // def combinedCommand = "${command} 2>&1"
-      def returnValue = bat(returnStderr: true, script: command)
+      def returnValue = sh(returnStderr: true, script: command)
       echo "returnValue: ${returnValue}"
-      //def stderr = bat(script: combinedCommand, returnStatus: true)
+      //def stderr = sh(script: combinedCommand, returnStatus: true)
       // return returnValue
       
    } catch (Exception e) {
@@ -22,13 +22,13 @@ def dsau() {
       return e
     }
 
-    // def returnValue1 = bat(script: 'python test.py', returnStatus: true, returnStdout: true)
+    // def returnValue1 = sh(script: 'python test.py', returnStatus: true, returnStdout: true)
     // if(returnValue1 != 0){
     //   echo "Return Value: ${returnValue1}"
     //   return returnValue1
     // }
     // else{
-    //   def returnValue2 = bat(script: 'python extraStep.py', returnStatus: true, returnStdout: true)
+    //   def returnValue2 = sh(script: 'python extraStep.py', returnStatus: true, returnStdout: true)
     // }
 
     // Print the return value
