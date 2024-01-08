@@ -2,50 +2,37 @@ pipeline {
     agent any
 
     stages {
-        stage('Install Python') {
+
+        stage('hello') {
             steps {
                 script {
-                    // Install Python using the 'tool' step
-                    def pythonTool = 'Python3'
-                    def pythonHome = tool name: "${pythonTool}", type: 'hudson.plugins.python.PythonInstallation'
+                    def logFilePath = "${WORKSPACE}/output1.txt"
 
-                    // Add the Python executable to the PATH
-                    env.PATH = "${pythonHome}/bin:${env.PATH}"
+                    // Print the list of files in the workspace
+                    def filesList = sh(script: 'ls -l', returnStdout: true).trim()
+                    echo "List of files: \n${filesList}"
+
+                    // Run the combined command
+                    sh(script: 'python --version')
+
+                    sh(script: 'python test.py')
                 }
             }
         }
 
-        // stage('hello') {
-        //     steps {
-        //         script {
-        //             def logFilePath = "${WORKSPACE}/output1.txt"
+        stage('Upload database to artifactory') {
+            steps {
+                echo "Uploaded DB to artifactory"
+            }
+        }
+    }
 
-        //             // Print the list of files in the workspace
-        //             def filesList = sh(script: 'ls -l', returnStdout: true).trim()
-        //             echo "List of files: \n${filesList}"
-
-        //             // Run the combined command
-        //             sh(script: 'python --version')
-
-        //             sh(script: 'python test.py')
-        //         }
-        //     }
-        // }
-
-        // stage('Upload database to artifactory') {
-        //     steps {
-    //             echo "Uploaded DB to artifactory"
-    //         }
-    //     }
-    // }
-
-    // post {
-    //     // always cleanup
-    //     always {
-    //         deleteDir()
-    //     }
-    // }
-}
+    post {
+        // always cleanup
+        always {
+            deleteDir()
+        }
+    }
 }
 
 // pipeline {
