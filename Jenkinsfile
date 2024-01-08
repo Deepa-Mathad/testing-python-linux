@@ -17,7 +17,7 @@ pipeline {
                         extraStep.py > ${logFilePath} 2>&1 
                     """
 
-                    sh(script: command)
+                    sh(script: combinedCommand)
                     echo "Log File Path: ${logFilePath}"
                     def fullOutput = readFile(file: logFilePath)
                     echo "Full Output:\n${fullOutput}"
