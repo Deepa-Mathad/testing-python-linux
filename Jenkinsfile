@@ -18,7 +18,7 @@ pipeline {
                     echo "List of files: \n${filesList}"
 
                     // Run the combined command
-                    sh(script: python test.py)
+                    sh(script: 'python test.py')
                 }
             }
         }
