@@ -17,24 +17,6 @@ pipeline {
                 def filesList = sh(script: 'ls -l', returnStdout: true).trim()
                 echo "List of files: \n${filesList}"
                 sh(script: combinedCommand)
-                echo "Log File Path: ${logFilePath}"
-                def fullOutput = readFile(file: logFilePath)
-                echo "Full Output:\n${fullOutput}"
-                def fullOutput1 = readFile(file: logFilePath, encoding: 'UTF-16').trim()
-                echo "Full Output 1:\n${fullOutput1}"
-                if(fullOutput1.contains("KeyError:"))
-                {
-                  echo "passed"
-                }
-                else
-                {
-                  echo "failes"
-                }
-                echo "Full Output 2:\n${fullOutput2}"
-                if (containsSubstringWithoutBOM(fullOutput2, "printing extra step"))
-                {
-                  echo "full output 2 passed"
-                }
             }
         }
     }
