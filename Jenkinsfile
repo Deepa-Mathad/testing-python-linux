@@ -1,27 +1,5 @@
 
 
-def dsau() {
-  try {
-    command = """python test.py
-                  python extraStep.py
-    """
-    
-    // Print the command (optional)
-    echo "Running command: ${command}"
-
-    // Execute the command and capture the return value
-    try{
-      // def combinedCommand = "${command} 2>&1"
-      def returnValue = sh(returnStderr: true, script: command)
-      echo "returnValue: ${returnValue}"
-      //def stderr = sh(script: combinedCommand, returnStatus: true)
-      // return returnValue
-      
-   } catch (Exception e) {
-      echo "Cause: ${e}"
-      return e
-    }
-
     // def returnValue1 = sh(script: 'python test.py', returnStatus: true, returnStdout: true)
     // if(returnValue1 != 0){
     //   echo "Return Value: ${returnValue1}"
@@ -66,7 +44,7 @@ pipeline {
                     """
 
                     // Run the combined command and capture the output using PowerShell
-                    powershell(script: combinedCommand)
+                    sh(script: combinedCommand)
 
                     // Print the log file paths
                     echo "Log File Path 1: ${logFilePath1}"
