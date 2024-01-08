@@ -1,7 +1,30 @@
 pipeline {
     agent any
-
+    
+    environment {
+        // Define the Python tool name as configured in Jenkins
+        pythonTool = 'Python3'
+    }
     stages {
+        stage('Install Python') {
+            steps {
+                script {
+                    // Install Python using the 'tool' step
+                    def pythonHome = tool name: "${pythonTool}", type: 'hudson.plugins.python.PythonInstallation'
+
+                    // Add the Python executable to the PATH
+                    env.PATH = "${pythonHome}/bin:${env.PATH}"
+                }
+            }
+        }
+        stage('Check Python Version') {
+            steps {
+                script {
+                    // Verify that Python is installed
+                    sh 'python --version'
+                }
+            }
+        }
         stage('hello') {
             steps {
                 script {
