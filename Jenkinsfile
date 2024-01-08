@@ -15,36 +15,37 @@ pipeline {
             }
         }
 
-        stage('hello') {
-            steps {
-                script {
-                    def logFilePath = "${WORKSPACE}/output1.txt"
+        // stage('hello') {
+        //     steps {
+        //         script {
+        //             def logFilePath = "${WORKSPACE}/output1.txt"
 
-                    // Print the list of files in the workspace
-                    def filesList = sh(script: 'ls -l', returnStdout: true).trim()
-                    echo "List of files: \n${filesList}"
+        //             // Print the list of files in the workspace
+        //             def filesList = sh(script: 'ls -l', returnStdout: true).trim()
+        //             echo "List of files: \n${filesList}"
 
-                    // Run the combined command
-                    sh(script: 'python --version')
+        //             // Run the combined command
+        //             sh(script: 'python --version')
 
-                    sh(script: 'python test.py')
-                }
-            }
-        }
+        //             sh(script: 'python test.py')
+        //         }
+        //     }
+        // }
 
-        stage('Upload database to artifactory') {
-            steps {
-                echo "Uploaded DB to artifactory"
-            }
-        }
-    }
+        // stage('Upload database to artifactory') {
+        //     steps {
+    //             echo "Uploaded DB to artifactory"
+    //         }
+    //     }
+    // }
 
-    post {
-        // always cleanup
-        always {
-            deleteDir()
-        }
-    }
+    // post {
+    //     // always cleanup
+    //     always {
+    //         deleteDir()
+    //     }
+    // }
+}
 }
 
 // pipeline {
