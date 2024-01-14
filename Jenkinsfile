@@ -2,26 +2,26 @@ pipeline {
     agent any
 
     stages {
-        // stage('hello') {
-        //     steps {
-        //         script {
-        //             def logFilePath = "${WORKSPACE}/output1.txt"
+        stage('hello') {
+            steps {
+                script {
+                    def logFilePath = "${WORKSPACE}/output1.txt"
 
-        //             // Print the list of files in the workspace
-        //             def filesList = sh(script: 'ls -l', returnStdout: true).trim()
-        //             echo "List of files: \n${filesList}"
+                    // Print the list of files in the workspace
+                    def filesList = sh(script: 'ls -l', returnStdout: true).trim()
+                    echo "List of files: \n${filesList}"
 
-        //             // Adjust the PATH environment variable
-        //             withEnv(["PATH=C:/Program Files/Python310/python.exe:${env.PATH}"]) {
-        //                 // Now, the 'python' executable should be found in the modified PATH
-        //                 sh(script: 'python --version')
+                    // Adjust the PATH environment variable
+                    withEnv(["PATH=C:/Program Files/Python310/python.exe:${env.PATH}"]) {
+                        // Now, the 'python' executable should be found in the modified PATH
+                        sh(script: 'python --version')
 
-        //                 // Specify the full path to the 'test.py' script
-        //                 // sh(script: 'python /path/to/test.py')
-        //             }
-        //         }
-        //     }
-       // }
+                        // Specify the full path to the 'test.py' script
+                        // sh(script: 'python /path/to/test.py')
+                    }
+                }
+            }
+       }
 
         stage('Upload database to artifactory') {
             steps {
