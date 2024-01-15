@@ -8,7 +8,18 @@ pipeline {
                     def logFilePath = "${WORKSPACE}/target"
                     echo "work space: ${WORKSPACE}"
                     sh "mkdir -p ${logFilePath}"
-                    command = 'python3 test.py > ${logFilePath} 2>&1 '
+
+                    command = """
+                                rm -rf virtual_env
+                                pwd
+                                ls
+                                mkdir virtual_env
+                                python3 -m venv virtual_env
+                                source ./virtual_env/bin/activate
+                                pip install requests
+                            """
+                    
+                    command = command + "python3 test.py > ${logFilePath} 2>&1 "
 
                     // Print the list of files in the workspace
                     def filesList = sh(script: 'ls -l', returnStdout: true).trim()
