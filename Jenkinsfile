@@ -27,9 +27,9 @@ pipeline {
                         sh(script: command)
                     }
 
-                    echo "Log File Path: ${logFilePath}"
-                    def fullOutput = readFile(file: logFilePath)
-                    echo "Full Output:\n${fullOutput}"
+                    // echo "Log File Path: ${logFilePath}"
+                    // def fullOutput = readFile(file: logFilePath)
+                    // echo "Full Output:\n${fullOutput}"
                 }
             }
        }
