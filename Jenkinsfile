@@ -5,9 +5,9 @@ pipeline {
         stage('hello') {
             steps {
                 script {
-                    def logFilePath = "${WORKSPACE}/target"
-                    echo "work space: ${WORKSPACE}"
-                    sh "mkdir -p ${logFilePath}"
+                    // def logFilePath = "${WORKSPACE}/target"
+                    // echo "work space: ${WORKSPACE}"
+                    // sh "mkdir -p ${logFilePath}"
 
                     // command = """
                     //             rm -rf virtual_env
