@@ -18,8 +18,6 @@ pipeline {
                     //             source ./virtual_env/bin/activate
                     //             pip install requests
                     //         """
-                    
-                    command = "python3 test.py > ${logFilePath} 2>&1 "
 
                     // Print the list of files in the workspace
                     def filesList = sh(script: 'ls -l', returnStdout: true).trim()
@@ -27,6 +25,10 @@ pipeline {
 
                     // Adjust the PATH environment variable
                     withEnv(["PATH=C:/Program Files/Python310/python.exe:${env.PATH}"]) {
+                        def logFilePath = "${WORKSPACE}/target"
+                        echo "work space: ${WORKSPACE}"
+                        sh "mkdir -p ${logFilePath}"
+                        command = "python3 test.py > ${logFilePath} 2>&1 "
                         // Now, the 'python' executable should be found in the modified PATH
                         sh(script: 'python3 --version')
 
