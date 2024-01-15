@@ -25,11 +25,10 @@ pipeline {
 
                         // Run the Python script and redirect output to the specified file
                         sh(script: command)
+                        echo "Log File Path: ${logFilePath}"
+                        def fullOutput = readFile(file: logFilePath)
+                        echo "Full Output:\n${fullOutput}"
                     }
-
-                    // echo "Log File Path: ${logFilePath}"
-                    // def fullOutput = readFile(file: logFilePath)
-                    // echo "Full Output:\n${fullOutput}"
                 }
             }
        }
