@@ -5,36 +5,28 @@ pipeline {
         stage('hello') {
             steps {
                 script {
-                    // def logFilePath = "${WORKSPACE}/target"
-                    // echo "work space: ${WORKSPACE}"
-                    // sh "mkdir -p ${logFilePath}"
-
-                    // command = """
-                    //             rm -rf virtual_env
-                    //             pwd
-                    //             ls
-                    //             mkdir virtual_env
-                    //             python3 -m venv virtual_env
-                    //             source ./virtual_env/bin/activate
-                    //             pip install requests
-                    //         """
-
                     // Print the list of files in the workspace
                     def filesList = sh(script: 'ls -l', returnStdout: true).trim()
                     echo "List of files: \n${filesList}"
 
                     // Adjust the PATH environment variable
                     withEnv(["PATH=C:/Program Files/Python310/python.exe:${env.PATH}"]) {
-                        def logFilePath = "${WORKSPACE}/target"
+                        def logFilePath = "${WORKSPACE}/target/output1.txt"  // Specify the output file path
                         echo "work space: ${WORKSPACE}"
-                        sh "mkdir -p ${logFilePath}"
-                        command = "python3 test.py > ${logFilePath} 2>&1 "
+                        
+                        // Create the target directory if it doesn't exist
+                        sh "mkdir -p ${WORKSPACE}/target"
+
+                        // Specify the full path to the 'test.py' script
+                        def command = "python3 test.py > ${logFilePath} 2>&1"
+                        
                         // Now, the 'python' executable should be found in the modified PATH
                         sh(script: 'python3 --version')
 
-                        // Specify the full path to the 'test.py' script
+                        // Run the Python script and redirect output to the specified file
                         sh(script: command)
                     }
+
                     echo "Log File Path: ${logFilePath}"
                     def fullOutput = readFile(file: logFilePath)
                     echo "Full Output:\n${fullOutput}"
@@ -56,6 +48,7 @@ pipeline {
         }
     }
 }
+
 
 
 // pipeline {
