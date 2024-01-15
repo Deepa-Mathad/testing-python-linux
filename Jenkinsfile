@@ -17,7 +17,7 @@ pipeline {
                         sh(script: 'python3 --version')
 
                         // Specify the full path to the 'test.py' script
-                        sh(script: python3 'test.py')
+                        sh(script: 'python3 test.py')
                     }
                 }
             }
