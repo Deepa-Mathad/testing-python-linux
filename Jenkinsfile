@@ -6,6 +6,7 @@ pipeline {
             steps {
                 script {
                     def logFilePath = "${WORKSPACE}/output1.txt"
+                    command = 'python3 test.py > ${logFilePath} 2>&1 '
 
                     // Print the list of files in the workspace
                     def filesList = sh(script: 'ls -l', returnStdout: true).trim()
@@ -17,7 +18,7 @@ pipeline {
                         sh(script: 'python3 --version')
 
                         // Specify the full path to the 'test.py' script
-                        sh(script: 'python3 test.py > ${logFilePath} 2>&1 ')
+                        sh(script: command)
                     }
                     echo "Log File Path: ${logFilePath}"
                     def fullOutput = readFile(file: logFilePath)
