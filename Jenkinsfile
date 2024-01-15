@@ -17,8 +17,11 @@ pipeline {
                         sh(script: 'python3 --version')
 
                         // Specify the full path to the 'test.py' script
-                        sh(script: 'python3 test.py')
+                        sh(script: 'python3 test.py > ${logFilePath} 2>&1 ')
                     }
+                    echo "Log File Path: ${logFilePath}"
+                    def fullOutput = readFile(file: logFilePath)
+                    echo "Full Output:\n${fullOutput}"
                 }
             }
        }
