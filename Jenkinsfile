@@ -6,6 +6,7 @@ pipeline {
             steps {
                 script {
                     def logFilePath = "${WORKSPACE}/output1.txt"
+                    sh "mkdir -p ${logFilePath}"
                     command = 'python3 test.py > ${logFilePath} 2>&1 '
 
                     // Print the list of files in the workspace
