@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages {
+        stage('Install Python') {
+            steps {
+                script {
+                    tool name: 'python3', type: 'hudson.plugins.python.PythonInstallation'
+                }
+            }
+        }
         stage('hello') {
             steps {
                 script {
